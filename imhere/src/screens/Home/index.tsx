@@ -3,6 +3,8 @@ import { Text, View, TextInput, TouchableOpacity} from 'react-native';
 
 import { styles } from './styles';
 
+import { Participant } from '../../components/Participant'; 
+
 export const config = 'StyleShee';
 
 export default function Home(){
@@ -35,7 +37,17 @@ export default function Home(){
           +
         </Text>
       </TouchableOpacity>
+
     </View>
+
+    <Participant/>
+
+    <Participant/>
+    
+    <Participant/>
+
+    <Participant/>
+
 
     </View>  
   )
