@@ -40,13 +40,13 @@ export default function Home(){
 
     </View>
 
-    <Participant/>
+    <Participant name='Giliarde'/>
 
-    <Participant/>
+    <Participant name='Kinguinho'/>
     
-    <Participant/>
+    <Participant name='Zeus'/>
 
-    <Participant/>
+    <Participant name='kats'/>
 
 
     </View>  
