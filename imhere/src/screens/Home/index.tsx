@@ -1,5 +1,5 @@
 
-import { Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, FlatList, Alert} from 'react-native';
 
 import { styles } from './styles';
 
@@ -9,9 +9,27 @@ export const config = 'StyleShee';
 
 export default function Home(){
 
-    function handleParticipantAdd(){
-        console.log("Voce clicou no botão de adicionar");
-    }
+  const participants = ['Rodrigo', 'Vine', 'Diego', 'Biro', 'kinguinho', 'ana', 'liza', 'pedro', 'mike', 'isa', 'joao', 'blac'];
+
+  function handleParticipantAdd(){
+      if(participants.includes("Rodrigo")){
+        return Alert.alert("Participante Existe", " Já existe um participante na lista com este nome!")
+        //return Alert.alert("VOCÊ CAIU NA PEGADINHA DO AMOR!!", "Saiba que Giliarde te ama muitom gatinha !!!!!")
+      }
+  }
+
+  function handleParticipantRemove(name: string){
+    Alert.alert("Remover",`Deseja remover o participante ${name}`, [
+      {
+        text:'Sim',
+        onPress: ()=> Alert.alert("Deletado!")
+      },
+      {
+        text:'Não',
+        style:'cancel'
+      }
+    ]);
+}
 
   return(
     <View style={styles.container}>
@@ -28,6 +46,7 @@ export default function Home(){
       <TextInput 
         style={styles.input}
         placeholder='Nome do participante'
+        //placeholder='APERTE O BOTÃO DE `+`'
         placeholderTextColor='#6B6B6B'
         
       />
@@ -40,13 +59,24 @@ export default function Home(){
 
     </View>
 
-    <Participant name='Giliarde'/>
+    <FlatList
+      data={participants}
+      keyExtractor={item => item}
+      renderItem={({item}) => (
+        <Participant 
+        key={item} 
+        name={item} 
+        onRemove={() => handleParticipantRemove(item)}
+      />
+      )}
+      showsVerticalScrollIndicator={false}
+      ListEmptyComponent={() => (
+        <Text style={styles.listEmptyText}>Ninguém chegou no role ainda, add ai!!!</Text>
+      )}
 
-    <Participant name='Kinguinho'/>
+    />
     
-    <Participant name='Zeus'/>
 
-    <Participant name='kats'/>
 
 
     </View>  
